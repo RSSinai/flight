@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="./main.html">Home</a>
+      <div id="right-nav">
+        <a href="./cart.html">Cart</a>
+        <a id="logout" href="./login.html" onclick="clearLogin()">Log out</a>
+      </div>
+    </div>
+    <div id="cart-container"></div>
+    <h2>Please select number of passsengers:</h2>
+    <input type="number" />
+
+    <h2>Total sum to pay is:</h2>
+    <div id="cart-sum"></div>
+    <button>Submit</button>
+    <script type="text/javascript" src="../script.js"></script>
+  </body>
+</html>

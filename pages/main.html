@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="./main.html">Home</a>
+      <div id="right-nav">
+        <a href="./cart.html" onclick="initCart()">Cart</a>
+        <a id="logout" href="./login.html" onclick="clearLogin()">Log out</a>
+      </div>
+    </div>
+    <div class="main-container">
+      <div id="admin-features" style="display: none;">
+        <h2>Admin options:</h2>
+        <button onclick="addFlight()">Add flight</button>
+        <button onclick="searchFlight()">Search flight</button>
+        <button onclick="sortFlightPrice()">Sort Flight's price</button>
+        <button onclick="updatePrice()">Update price</button>
+      </div>
+      <div id="regular-features">
+        <h2>User options:</h2>
+        <button onclick="searchFlight()">Search flight</button>
+        <button onclick="sortFlightPrice()">Sort Flight's price</button>
+      </div>
+      <div id="flight-list"></div>
+    </div>
+    
+    <script type="text/javascript" src="../script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+#right-nav {
+  float: right;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#admin-features,
+#regular-features {
+  margin-top: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+.active {
+  background-color: #04aa6d;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#flight-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flight-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flight-card h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.flight-card p {
+  margin: 5px 0;
+}
+
+#login-container {
+  display: table-caption;
+}
