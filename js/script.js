@@ -75,40 +75,39 @@ const users = [
 ];
 
 function validate() {
-    let username = document.getElementById("username").value;
-    let passpass = document.getElementById("password").value;
-    let checked = document.getElementById("checkbox").checked;
-    let email = document.getElementById("email").value;
-  
-    let user = users.find(
-      (user) => user.password === passpass && user.email === email
-    );
-  
-    if (user) {
-       let userInfoJSON = JSON.stringify(user);
-      localStorage.setItem("userInfo", userInfoJSON);
-  
-      if (user.isAdmin && checked) {
-         window.location.href = "./main.html?admin=true";
-      } else {
-         window.location.href = "./main.html?admin=false";
-      }
+  let username = document.getElementById("username").value;
+  let passpass = document.getElementById("password").value;
+  let checked = document.getElementById("checkbox").checked;
+  let email = document.getElementById("email").value;
+
+  let user = users.find(
+    (user) => user.password === passpass && user.email === email
+  );
+
+  if (user) {
+    let userInfoJSON = JSON.stringify(user);
+    localStorage.setItem("userInfo", userInfoJSON);
+
+    if (user.isAdmin && checked) {
+      window.location.href = "./main.html?admin=true";
     } else {
-       alert("Invalid username or password");
+      window.location.href = "./main.html?admin=false";
     }
+  } else {
+    alert("Invalid username or password");
   }
-  
-  // Get the value of the 'admin' parameter from the URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const isAdmin = urlParams.get('admin');
-  
-  // Check if the 'admin' parameter is present and has the value 'true'
-  if (isAdmin === 'true') {
-    // Display admin features
-    document.getElementById('admin-features').style.display = 'block';
-    document.getElementById('regular-features').style.display = 'none';
-  }
-  
+}
+
+// Get the value of the 'admin' parameter from the URL
+const urlParams = new URLSearchParams(window.location.search);
+const isAdmin = urlParams.get("admin");
+
+// Check if the 'admin' parameter is present and has the value 'true'
+if (isAdmin === "true") {
+  // Display admin features
+  document.getElementById("admin-features").style.display = "block";
+  document.getElementById("regular-features").style.display = "none";
+}
 
 function clearLogin() {
   let message = "Do you wish to logout?";
@@ -132,13 +131,15 @@ function addFlight() {
 
   flights.push(newFlight);
   alert("Flight added successfully!");
-  console.log(flights);
-  
+
+  printFlights();
 }
 
 function sortFlightPrice() {
   flights.sort((a, b) => a.price - b.price);
   alert("Flights price sorted!");
+  printFlights();
+
 }
 
 function searchFlight() {
@@ -146,8 +147,26 @@ function searchFlight() {
   const searchedFlight = flights.find((flight) => {
     return parseInt(flight.id) === parseInt(flightNumber);
   });
-  console.log(searchedFlight);
-  
+
+  const container = document.getElementById("flight-list");
+
+  container.innerHTML = "";
+
+  if (searchedFlight) {
+    const card = document.createElement("div");
+    card.classList.add("flight-card");
+    card.innerHTML = `
+      <h2>${searchedFlight.id}</h2>
+      <p>From: ${searchedFlight.from}</p>
+      <p>To: ${searchedFlight.to}</p>
+      <p>Price: ${searchedFlight.price}$</p>
+      <button onclick="buyFlight(${searchedFlight.id}, '${searchedFlight.from}', '${searchedFlight.to}', ${searchedFlight.price})">Buy flight</button>
+    `;
+    container.appendChild(card);
+  } else {
+    alert("Flight not found!");
+    printFlights();
+  }
 }
 
 function updatePrice() {
@@ -155,16 +174,15 @@ function updatePrice() {
   const newPrice = parseFloat(prompt("Enter the new price:"));
 
   const flightToUpdate = flights.find((flight) => flight.id === flightId);
-  
+
   if (flightToUpdate) {
     flightToUpdate.price = newPrice;
     alert("Flight price updated successfully!");
   } else {
     alert("Flight not found!");
   }
-  printFlights()
+  printFlights();
 }
-
 
 function buyFlight(id, from, to, price) {
   let message = "Do you wish to buy this flight?";
@@ -176,32 +194,31 @@ function buyFlight(id, from, to, price) {
     );
     cart.push({ id, from, to, price });
     localStorage.setItem("myCartArray", JSON.stringify(cart));
-        // console.log(cart)
+    // console.log(cart)
   } else {
     return;
   }
 }
 
-
 //print from array to main
-function printFlights()
-{
+function printFlights() {
   const container = document.getElementById("flight-list");
-flights.forEach((flight) => {
-  const card = document.createElement("div");
-  card.classList.add("flight-card");
-  card.innerHTML = `
-  
-        <h2>${flight.id}</h2>
-        <p>From: ${flight.from}</p>
-        <p>To: ${flight.to}</p>
-        <p>Price: ${flight.price}$</p>
-        <button onclick="buyFlight(${flight.id}, '${flight.from}', '${flight.to}', ${flight.price})">Buy flight</button>
+
+  container.innerHTML = "";
+
+  flights.forEach((flight) => {
+    const card = document.createElement("div");
+    card.classList.add("flight-card");
+    card.innerHTML = `
+      <h2>${flight.id}</h2>
+      <p>From: ${flight.from}</p>
+      <p>To: ${flight.to}</p>
+      <p>Price: ${flight.price}$</p>
+      <button onclick="buyFlight(${flight.id}, '${flight.from}', '${flight.to}', ${flight.price})">Buy flight</button>
     `;
-  container.appendChild(card);
-});
+    container.appendChild(card);
+  });
 }
-printFlights()
+printFlights();
 
-
-console.log(flights)
+console.log(flights);
