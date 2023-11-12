@@ -133,6 +133,7 @@ function addFlight() {
   flights.push(newFlight);
   alert("Flight added successfully!");
   console.log(flights);
+  
 }
 
 function sortFlightPrice() {
@@ -146,6 +147,7 @@ function searchFlight() {
     return parseInt(flight.id) === parseInt(flightNumber);
   });
   console.log(searchedFlight);
+  
 }
 
 function updatePrice() {
@@ -153,9 +155,16 @@ function updatePrice() {
   const newPrice = parseFloat(prompt("Enter the new price:"));
 
   const flightToUpdate = flights.find((flight) => flight.id === flightId);
-  flightToUpdate.price = newPrice;
-  alert("Flight price updated successfully!");
+  
+  if (flightToUpdate) {
+    flightToUpdate.price = newPrice;
+    alert("Flight price updated successfully!");
+  } else {
+    alert("Flight not found!");
+  }
+  printFlights()
 }
+
 
 function buyFlight(id, from, to, price) {
   let message = "Do you wish to buy this flight?";
@@ -175,7 +184,9 @@ function buyFlight(id, from, to, price) {
 
 
 //print from array to main
-const container = document.getElementById("flight-list");
+function printFlights()
+{
+  const container = document.getElementById("flight-list");
 flights.forEach((flight) => {
   const card = document.createElement("div");
   card.classList.add("flight-card");
@@ -189,6 +200,8 @@ flights.forEach((flight) => {
     `;
   container.appendChild(card);
 });
+}
+printFlights()
 
 
-
+console.log(flights)
