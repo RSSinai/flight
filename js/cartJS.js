@@ -28,4 +28,7 @@ let inputValue = numberInput.value;
 document.getElementById("cart-sum").innerHTML = inputValue * totalPrice + "$";
 });
 
+function confirmCart(){
+    alert('The flights you selected are confirmed, an email will be sent')
+}
 
