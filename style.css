@@ -82,3 +82,7 @@ button:hover {
 #login-container {
   display: table-caption;
 }
+#cart-cards
+{
+  display: flex;
+}

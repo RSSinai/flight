@@ -167,7 +167,7 @@ function buyFlight(id, from, to, price) {
     );
     cart.push({ id, from, to, price });
     localStorage.setItem("myCartArray", JSON.stringify(cart));
-        console.log(cart)
+        // console.log(cart)
   } else {
     return;
   }
@@ -189,4 +189,6 @@ flights.forEach((flight) => {
     `;
   container.appendChild(card);
 });
+
+
 
